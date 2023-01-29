@@ -4,54 +4,53 @@ import java.io.InputStreamReader;
 
 public class UnionFind{
 
-    private static int[] list;
+    private Integer[] id;
 
     public static void main(String[] args) throws IOException {
+        UnionFind uf = new UnionFind();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] firstLine = br.readLine().split(" ");
-        int n = Integer.parseInt(firstLine[0]);
-        int q = Integer.parseInt(firstLine[1]);
-        list = new int[n];
-        for(int i = 0; i<n; i++){
-            list[i] = i;
-        }
+        Integer n = Integer.parseInt(firstLine[0]);
+        Integer q = Integer.parseInt(firstLine[1]);
+        uf.id = new Integer[n];
     
-        for(int i = 0; i<q; i++){
+        for(Integer i = 0; i<q; i++){
             String[] line = br.readLine().split(" ");
-            int a = Integer.parseInt(line[1]);
-            int b = Integer.parseInt(line[2]);
+            Integer a = Integer.parseInt(line[1]);
+            Integer b = Integer.parseInt(line[2]);
 
             switch(line[0]){
-                case "?" : query(a, b);  break;
-                case "=" : union(a, b); break;
+                case "?" : uf.query(a, b);  break;
+                case "=" : uf.union(a, b); break;
             }
         }
     }
 
-    private static int find(int number){
-        int parent = list[number];
-        if(parent != number){find(parent);}
-        return parent;
+    private Integer find(Integer number){
+        Integer parent = id[number];
+        if(parent != null){find(parent);}
+        return parent == null ? number : parent;
     }
 
-    private static void query(int s, int t) {
-        int rootS = find(s);
-        int rootT = find(t);
+    private void query(Integer s, Integer t) {
+        Integer rootS = find(s);
+        Integer rootT = find(t);
 
-        if(rootS == rootT){
+        if(rootS.equals(rootT)){
             System.out.println("yes");
         } else {
             System.out.println("no");
         }
     }
 
-    private static void union(int s, int t) {
-        int rootS = find(s);
-        int rootT = find(t);
+    private void union(Integer s, Integer t) {
+        Integer rootS = find(s);
+        Integer rootT = find(t);
 
-        if(rootS != rootT){
-            list[rootT] = rootS;
-         }
+        if(!rootS.equals(rootT)){
+            id[rootS] = rootT;
+            id[s] = rootT;
+        }
     }
 
 }
