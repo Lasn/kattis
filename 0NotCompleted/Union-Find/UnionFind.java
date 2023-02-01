@@ -24,9 +24,10 @@ public class UnionFind{
     }
 
     private void compress(int parent, int root) {
-        while(parent != id[parent]){
+        while(parent != root){
+            int nextParent = id[parent];
             id[parent] = root;
-            parent = id[parent];
+            parent = nextParent;
         }
     }
 
