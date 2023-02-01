@@ -1,53 +1,61 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class Tides{
 
-    private static int[] list;
+    private int[] id;
+    private int[] size;
+    private int count;
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] firstLine = br.readLine().split(" ");
-        int n = Integer.parseInt(firstLine[0]);
-        int q = Integer.parseInt(firstLine[1]);
-        list = new int[n];
-        for(int i = 0; i<n; i++){
-            list[i] = i;
-        }
-    
-        for(int i = 0; i<q; i++){
-            String[] line = br.readLine().split(" ");
-
-            switch(line[0]){
-                case "s" : query(Integer.parseInt(line[1])-1);  break;
-                case "t" : union(Integer.parseInt(line[1])-1, Integer.parseInt(line[2])-1); break;
-            }
+    public Tides(int n) {
+        id = new int[n];
+        size = new int[n];
+        count = n;
+        for(int i = 0; i<n;i++){
+            id[i]=i;
+            size[i]=1;
         }
     }
 
-    private static int find(int number){
-        int parent = list[number];
-        if(parent != number){find(parent);}
+    public int find(int parent){
+        int searchNumber = parent;
+        while(parent != id[parent]){
+            parent = id[parent];
+        }
+        compress(searchNumber, parent);
         return parent;
     }
 
-    private static void query(int s) {
-        int rootS = find(s);
-        int count = 0;
-        for (int i : list) {
-            if(i == rootS){count++;}
+    private void compress(int parent, int root) {
+        while(parent != id[parent]){
+            id[parent] = root;
+            parent = id[parent];
         }
-        System.out.println(count);
     }
 
-    private static void union(int s, int t) {
+    public boolean query(int s, int t){
+        return find(s) == find(t);
+    }
+
+    public void union(int s, int t) {
         int rootS = find(s);
         int rootT = find(t);
 
         if(rootS != rootT){
-            list[rootT] = rootS;
-         }
+            count--;
+            if(size[rootS]<size[rootT]){
+                id[rootS] = rootT; 
+                size[rootT] += size[rootS];}
+            else{
+                id[rootT] = rootS; 
+                size[rootS] += size[rootT];}
+        } 
+    }
+
+    public int getSize(int group){
+        int root = find(group);
+        return size[root];
+    }
+
+    public int getCount() {
+        return count;
     }
 
 }
