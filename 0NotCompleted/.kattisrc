@@ -9,7 +9,7 @@ submissionurl = https://open.kattis.com/submit
 submissionsurl = https://open.kattis.com/submissions
 
 [kat]
-language = python
+language = python3
 workcommand = 
 
 [File associations]
@@ -29,7 +29,7 @@ workcommand =
 .pas = Pascal
 .php = PHP
 .pl = Prolog
-.py = Python
+.py = Python3
 .rb = Ruby
 .rs = Rust
 .fs = F#
@@ -42,7 +42,7 @@ c# = dotnet new console
 rust = cargo init --name problem
 
 [Run commands]
-python = python @f
+python = python3 @f
 php = php @f
 java = java @c
 c# = dotnet run

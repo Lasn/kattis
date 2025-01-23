@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/lasseovergaard/Documents/Uddannelse/ITU/Software Design/kattis/0NotCompleted/triolingopush/test'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003BAC, symSize: 0x70 }
+  - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003BAC, symSize: 0x70 }
+  - { offsetInCU: 0x83, offset: 0x83, size: 0x8, addend: 0x0, symName: _fibonacci_matrix_power, symObjAddr: 0x70, symBinAddr: 0x100003C1C, symSize: 0xC8 }
+  - { offsetInCU: 0xC7, offset: 0xC7, size: 0x8, addend: 0x0, symName: _matrix_power, symObjAddr: 0x138, symBinAddr: 0x100003CE4, symSize: 0x150 }
+  - { offsetInCU: 0x135, offset: 0x135, size: 0x8, addend: 0x0, symName: _dot3x3, symObjAddr: 0x288, symBinAddr: 0x100003E34, symSize: 0x120 }
+...
